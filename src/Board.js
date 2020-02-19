@@ -6,7 +6,7 @@ const Board = ({ lists, setLists }) => {
 
   const addCard = (card, listData) => {
     const newList = { ...listData, cards: listData.cards.concat([card]) };
-    setLists([...lists.filter(list => list.name !== listData.name), newList]); // this looks kind of janky
+    setLists([...lists.filter(list => list.name !== listData.name), newList]);
   };
 
   const removeCard = (card, listData) => {
@@ -14,7 +14,7 @@ const Board = ({ lists, setLists }) => {
       ...listData,
       cards: listData.cards.filter(cardItem => cardItem !== card),
     };
-    setLists([...lists.filter(list => list.name !== listData.name), newList]); // this still looks kind of janky
+    setLists([...lists.filter(list => list.name !== listData.name), newList]);
   };
 
   const addList = () => {
