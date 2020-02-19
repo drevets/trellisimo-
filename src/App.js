@@ -6,7 +6,7 @@ import Board from './Board.js'
 const Boards = () => {
   const [lists, setLists] = React.useState([])
   return (
-    <div className="container-fluid">
+    <div className="container-fluid App">
     <Board lists={lists} setLists={setLists}/>
     </div>
   );
