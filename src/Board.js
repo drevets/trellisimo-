@@ -1,9 +1,15 @@
 import React from 'react';
+import List from './List';
 
 const Board = ({ lists, setLists }) => {
   const [listName, setListName] = React.useState('');
 
-  const handleAddList = () => {
+  const addCard = (card, listData) => {
+    const newList = {...listData, cards: listData.cards.concat([card])}
+    setLists([...lists.filter(list => list.name !== listData.name), newList]) // this looks kind of janky
+  }
+
+  const addList = () => {
     setLists(lists.concat([{ name: listName, cards: [] }]));
     setListName('');
   };
@@ -13,11 +19,16 @@ const Board = ({ lists, setLists }) => {
       <h2>Board Name</h2>
       <ul>
         {lists.map(list => (
-          <li key={list.name}>{list.name}</li>
+          <li key={list.name}>
+            <List listData={list} addCard={addCard} />
+          </li>
         ))}
       </ul>
-      <input value={listName} onChange={e => setListName(e.target.value)}></input>
-      <button onClick={() => handleAddList()}>Add a list</button>
+      <input
+        value={listName}
+        onChange={e => setListName(e.target.value)}
+      ></input>
+      <button onClick={() => addList()}>Add a list</button>
     </React.Fragment>
   );
 };
