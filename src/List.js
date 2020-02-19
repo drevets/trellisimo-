@@ -8,7 +8,20 @@ const List = ({ listData, addCard, removeList, removeCard }) => {
       <div className="col-sm" style={{ padding: '30px' }}>
         <div className="row">
           <div className="card" style={{ width: '18rem' }}>
-            <div className="card-header">{listData.name}</div>
+            <div className="card-header">
+              <div className="col">
+                <div className="row">
+                  <div className="col">{listData.name}</div>
+                  <button
+                    className="btn btn-outline-warning btn-sm"
+                    style={{ marginTop: '15px' }}
+                    onClick={() => removeList(listData)}
+                  >
+                    Remove List
+                  </button>
+                </div>
+              </div>
+            </div>
             <ul className="list-group list-group-flush">
               {listData.cards.map(card => (
                 <li key={card} className="list-group-item">
@@ -47,13 +60,6 @@ const List = ({ listData, addCard, removeList, removeCard }) => {
             </div>
           </div>
         </div>
-        <button
-          className="btn btn-warning"
-          style={{ marginTop: '15px' }}
-          onClick={() => removeList(listData)}
-        >
-          Remove List
-        </button>
       </div>
     </React.Fragment>
   );
