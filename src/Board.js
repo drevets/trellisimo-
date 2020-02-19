@@ -1,14 +1,23 @@
 import React from 'react';
 
 const Board = ({ lists, setLists }) => {
+  const [listName, setListName] = React.useState('');
+
+  const handleAddList = () => {
+    setLists(lists.concat([{ name: listName, cards: [] }]));
+    setListName('');
+  };
+
   return (
     <React.Fragment>
-      <h2>I am a board!!! See my lists below here </h2>
-      <li>
+      <h2>Board Name</h2>
+      <ul>
         {lists.map(list => (
-          <ul>{list.name}</ul>
+          <li key={list.name}>{list.name}</li>
         ))}
-      </li>
+      </ul>
+      <input value={listName} onChange={e => setListName(e.target.value)}></input>
+      <button onClick={() => handleAddList()}>Add a list</button>
     </React.Fragment>
   );
 };
